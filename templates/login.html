@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html   lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Login</title>
 </head>
 <body>
-$END$
+    <h1>Login</h1>
+    <form method="post" action="{{ url_for('login') }}">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+    <a href="{{ url_for('home') }}">Back to home</a>
 </body>
 </html>
