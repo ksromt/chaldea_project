@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -16,7 +16,8 @@ class User(db.Model):
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    username = session.get('username', None)
+    return render_template("index.html", username=username)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -39,10 +40,11 @@ def login():
         password = request.form["password"]
         user = User.query.filter_by(username=username).first()
         if user and user.password == password:
-            flash("Login successful!", "success")
-            return redirect(url_for("home"))
+            session['username'] = user.username  # 将用户名存储在会话变量中
+            flash('登录成功！', 'success')
+            return redirect(url_for('home'))
         else:
-            flash("Invalid username or password.", "danger")
+            flash('登录失败，请检查用户名或密码。', 'danger')
     return render_template("login.html")
 
 
