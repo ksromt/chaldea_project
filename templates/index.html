@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>迦勒底亚斯</title>
+    <head>
+        ...
+        <style>
+            body {
+                background-image: url("{{ url_for('static', filename='chaldea_bg.png') }}");
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+        </style>
+    </head>
+
     <!-- Link to the CSS file -->
     <!-- Add favicon -->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}" />
@@ -29,7 +40,7 @@
     </header>
     <main>
         <!-- Add title.png as an image -->
-        <img src="{{ url_for('static', filename='title.png') }}" alt="Title" />
+        <img src="{{ url_for('static', filename='title.png') }}" alt="Title" width="150" height="150" />
         <p>加班好烦，每天一点时间都没。</p>
     <!--    <label for="inputBox">输入您的信息：</label>-->
     <!--    <input type="text" id="inputBox" name="inputBox">-->
