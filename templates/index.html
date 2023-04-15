@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>迦勒底亚斯</title>
     <head>
-        ...
         <style>
             body {
                 background-image: url("{{ url_for('static', filename='chaldea_bg.png') }}");
@@ -19,11 +18,7 @@
     <!-- Add favicon -->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-<!--    &lt;!&ndash; Link to the JavaScript file &ndash;&gt;-->
-<!--    <script src="{{ url_for('static', filename='script.js') }}"></script>-->
 
-<!--    <link rel="icon" href="/favicon.png" type="image/png">-->
-<!--    <link rel="stylesheet" href="styles.css">-->
 </head>
 <body>
     <header>
@@ -39,18 +34,22 @@
             </div>
     </header>
     <main>
-        <!-- Add title.png as an image -->
-        <img src="{{ url_for('static', filename='title.png') }}" alt="Title" width="150" height="150" />
-        <p>加班好烦，每天一点时间都没。</p>
-    <!--    <label for="inputBox">输入您的信息：</label>-->
-    <!--    <input type="text" id="inputBox" name="inputBox">-->
-    <!--    <button id="clickButton">点击我</button>-->
+        {% for post in posts %}
+        <div class="post">
+            <h2><a href="{{ url_for('view_post', post_id=post.id) }}">{{ post.title }}</a></h2>
+            <p>Author: {{ post.author.username }}</p>
+        </div>
+        {% endfor %}
+        {% if username %}
+        <a href="{{ url_for('create_post') }}">Create a new post</a>
+        {% endif %}
+
+        <!--        &lt;!&ndash; Add title.png as an image &ndash;&gt;-->
+<!--        <img src="{{ url_for('static', filename='title.png') }}" alt="Title" width="150" height="150" />-->
+<!--        <p>=-=。</p>-->
     </main>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- 下面的三行有啥用啊 -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
